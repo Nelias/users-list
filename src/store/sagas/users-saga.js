@@ -1,17 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { fetchUsersData } from '../api'
+import * as actionTypes from '../actions/actionTypes'
 
-function* fetchUser() {
+function* fetchUsers() {
   try {
-    const usersData = yield call(fetchUsersData)
-    yield put({ type: 'USERS_FETCH_SUCCEEDED', users: usersData })
+    const users = yield call(fetchUsersData)
+    yield put({ type: actionTypes.USERS_FETCH_SUCCEEDED, payload: { users } })
   } catch (error) {
-    yield put({ type: 'USERS_FETCH_FAILED', message: error.message })
+    yield put({ type: actionTypes.USERS_FETCH_FAILED, message: error.message })
   }
 }
 
 function* usersSaga() {
-  yield takeLatest('USERS_FETCH_REQUESTED', fetchUser)
+  yield takeLatest(actionTypes.USERS_FETCH_REQUESTED, fetchUsers)
 }
 
 export default usersSaga

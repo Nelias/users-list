@@ -18,7 +18,7 @@ jest.mock('react-router-dom', () => ({
   }),
 }))
 
-describe('TopcBar', () => {
+describe('TopBar', () => {
   let store: any = null
   let wrapper: any = null
 
