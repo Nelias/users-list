@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const StyledUserCard = styled.div`
-  min-width: 200px;
+  min-width: 250px;
   margin: 10px 0;
   border: 1px solid #ae8625;
   padding: 0 20px;
+  border-radius: 10px;
 `
 
 export const UserTitle = styled.p`
@@ -15,9 +16,10 @@ export const UserTitle = styled.p`
 
 export const UserName = styled.span`
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
+  font-size: 18px;
 `
 
 export const UserNickname = styled.span`
-  color: grey;
+  color: #999;
 `
