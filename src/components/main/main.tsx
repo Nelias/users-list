@@ -2,7 +2,7 @@ import React from 'react'
 import { connect, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { UsersList } from '../users-list/users-list'
-import { TUser } from '../user/user'
+import { TUser } from '../user-card/user-card'
 import { fetchUsers } from '../../store/actions/users'
 
 interface MainProps {

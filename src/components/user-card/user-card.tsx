@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { StyledUserCard, UserName, UserTitle, UserNickname } from './user-card-styles'
 
 type TAddress = {
   street: string
@@ -29,18 +30,19 @@ export type TUser = {
   company: TCompany
 }
 
-export interface IUser {
+export interface IUserCard {
   user: TUser
 }
 
-export const User: React.FC<IUser> = ({ user }) => {
+export const UserCard: React.FC<IUserCard> = ({ user }) => {
   return (
-    <div>
-      <p>
-        {user.name} - @{user.username}
-      </p>
-    </div>
+    <StyledUserCard>
+      <UserTitle>
+        <UserName>{user.name}</UserName>
+        <UserNickname>@{user.username}</UserNickname>
+      </UserTitle>
+    </StyledUserCard>
   )
 }
 
-export default connect(null, {})(User)
+export default connect(null, {})(UserCard)

@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  users: [{ id: 1, name: 'Frank' }],
+  users: [],
   areUsersLoading: false,
 }
 
