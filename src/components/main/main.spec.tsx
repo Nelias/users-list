@@ -33,6 +33,14 @@ describe('Main', () => {
     expect(wrapper.length).toBe(1)
   })
 
+  it('should not contain a header', () => {
+    expect(wrapper.exists('header')).toBe(false)
+  })
+
+  it('should contain main content', () => {
+    expect(wrapper.exists('main')).toBe(true)
+  })
+
   afterAll(() => {
     wrapper.unmount()
   })

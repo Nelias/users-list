@@ -12,11 +12,6 @@ export const Content = styled.main`
   overflow: hidden;
 
   color: white;
-
-  a {
-    color: white;
-    text-decoration: none;
-  }
 `
 
 export const Title = styled.h1`

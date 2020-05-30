@@ -8,14 +8,14 @@ import { Content, Title, Spinner, ErrorMessage, NetworkError } from './main-styl
 interface MainProps {
   areUsersLoading: boolean
   usersErrorMessage: null | string
-  users: TUser[]
+  usersList: TUser[]
   searchPhrase: string
 }
 
 export const Main: React.FC<MainProps> = ({
   areUsersLoading,
   usersErrorMessage,
-  users,
+  usersList,
   searchPhrase,
 }) => {
   const dispatch = useDispatch()
@@ -34,11 +34,11 @@ export const Main: React.FC<MainProps> = ({
         </NetworkError>
       )}
 
-      {!areUsersLoading && !usersErrorMessage && users?.length > 0 && (
+      {!areUsersLoading && !usersErrorMessage && usersList?.length > 0 && (
         <>
           <Title>Users List</Title>
           <UsersList
-            users={users.filter((user: TUser) => {
+            users={usersList.filter((user: TUser) => {
               return searchPhrase
                 ? user.name.toLowerCase().includes(searchPhrase) ||
                     user.username.toLowerCase().includes(searchPhrase)
@@ -52,11 +52,11 @@ export const Main: React.FC<MainProps> = ({
 }
 
 const mapStateToProps = (state: any) => {
-  const { users, usersErrorMessage, areUsersLoading } = state.users
+  const { usersList, usersErrorMessage, areUsersLoading } = state.users
   const searchPhrase = state.search.phrase?.toLowerCase()
 
   return {
-    users,
+    usersList,
     usersErrorMessage,
     areUsersLoading,
     searchPhrase,

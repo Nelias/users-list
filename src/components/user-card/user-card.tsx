@@ -23,11 +23,11 @@ export type TUser = {
   id: number
   name: string
   username: string
-  email: string
-  address: TAddress
-  phone: string
-  website: string
-  company: TCompany
+  email?: string
+  address?: TAddress
+  phone?: string
+  website?: string
+  company?: TCompany
 }
 
 export interface IUserCard {

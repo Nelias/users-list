@@ -1,11 +1,28 @@
 import styled from 'styled-components'
 
-export const StyledUserCard = styled.div`
+export const StyledUserCard = styled.li`
   min-width: 250px;
   margin: 10px 0;
   border: 1px solid #ae8625;
   padding: 0 20px;
   border-radius: 10px;
+  position: relative;
+
+  counter-increment: li;
+
+  &::before {
+    content: counter(li);
+    color: #e2ad2d;
+    display: inline-block;
+    position: absolute;
+    left: -10px;
+    top: 37%;
+    width: 1em;
+    margin-left: -1.5em;
+    margin-right: 0.5em;
+    text-align: right;
+    direction: rtl;
+  }
 `
 
 export const UserTitle = styled.p`

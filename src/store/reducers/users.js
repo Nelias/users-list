@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
-  users: [],
+  usersList: [],
   areUsersLoading: false,
   usersErrorMessage: null,
 }
@@ -19,7 +19,7 @@ export default function usersFetchReducer(state = initialState, action) {
     case actionTypes.USERS_FETCH_SUCCEEDED: {
       return {
         ...state,
-        users: action.payload.users.data,
+        usersList: action.payload.users.data,
         areUsersLoading: false,
         usersErrorMessage: null,
       }

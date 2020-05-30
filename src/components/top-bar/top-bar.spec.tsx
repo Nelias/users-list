@@ -31,11 +31,11 @@ describe('TopBar', () => {
   })
 
   it('should contain a search input', () => {
-    expect(wrapper.find('input'))
+    expect(wrapper.exists('input')).toBe(true)
   })
 
   it('should contain a search button', () => {
-    expect(wrapper.find('button'))
+    expect(wrapper.exists('button')).toBe(true)
   })
 
   afterAll(() => {
