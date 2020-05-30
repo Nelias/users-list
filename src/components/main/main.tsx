@@ -3,15 +3,21 @@ import { connect, useDispatch } from 'react-redux'
 import { UsersList } from '../users-list/users-list'
 import { TUser } from '../user-card/user-card'
 import { fetchUsers } from '../../store/actions/users'
-import { Content, Title, Spinner } from './main-styles'
+import { Content, Title, Spinner, ErrorMessage, NetworkError } from './main-styles'
 
 interface MainProps {
   areUsersLoading: boolean
+  usersErrorMessage: null | string
   users: TUser[]
   searchPhrase: string
 }
 
-export const Main: React.FC<MainProps> = ({ areUsersLoading, users, searchPhrase }) => {
+export const Main: React.FC<MainProps> = ({
+  areUsersLoading,
+  usersErrorMessage,
+  users,
+  searchPhrase,
+}) => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
@@ -22,7 +28,13 @@ export const Main: React.FC<MainProps> = ({ areUsersLoading, users, searchPhrase
     <Content>
       {areUsersLoading && <Spinner src={`${process.env.PUBLIC_URL}/spinner.svg`} alt="spinner" />}
 
-      {!areUsersLoading && users && (
+      {!areUsersLoading && usersErrorMessage !== null && (
+        <NetworkError>
+          <ErrorMessage>{usersErrorMessage}</ErrorMessage>
+        </NetworkError>
+      )}
+
+      {!areUsersLoading && !usersErrorMessage && users?.length > 0 && (
         <>
           <Title>Users List</Title>
           <UsersList
@@ -40,11 +52,12 @@ export const Main: React.FC<MainProps> = ({ areUsersLoading, users, searchPhrase
 }
 
 const mapStateToProps = (state: any) => {
-  const { users, areUsersLoading } = state.users
+  const { users, usersErrorMessage, areUsersLoading } = state.users
   const searchPhrase = state.search.phrase?.toLowerCase()
 
   return {
     users,
+    usersErrorMessage,
     areUsersLoading,
     searchPhrase,
   }

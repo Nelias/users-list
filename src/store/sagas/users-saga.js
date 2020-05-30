@@ -7,7 +7,7 @@ function* fetchUsers() {
     const users = yield call(fetchUsersData)
     yield put({ type: actionTypes.USERS_FETCH_SUCCEEDED, payload: { users } })
   } catch (error) {
-    yield put({ type: actionTypes.USERS_FETCH_FAILED, message: error.message })
+    yield put({ type: actionTypes.USERS_FETCH_FAILED })
   }
 }
 

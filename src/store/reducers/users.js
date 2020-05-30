@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes'
 const initialState = {
   users: [],
   areUsersLoading: false,
+  usersErrorMessage: null,
 }
 
 export default function usersFetchReducer(state = initialState, action) {
@@ -11,6 +12,7 @@ export default function usersFetchReducer(state = initialState, action) {
       return {
         ...state,
         areUsersLoading: true,
+        usersErrorMessage: null,
       }
     }
 
@@ -19,19 +21,15 @@ export default function usersFetchReducer(state = initialState, action) {
         ...state,
         users: action.payload.users.data,
         areUsersLoading: false,
+        usersErrorMessage: null,
       }
     }
 
     case actionTypes.USERS_FETCH_FAILED: {
       return {
         ...state,
-        users: action.payload.users.data
-          ? action.payload.users.data
-          : {
-              status: action.payload.users.status,
-              message: 'Could not find resource',
-            },
         areUsersLoading: false,
+        usersErrorMessage: 'Failed to fetch the users list!',
       }
     }
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyledUsers, SearchError } from './users-list-styles'
+import { StyledUsers } from './users-list-styles'
 import { TUser, UserCard } from '../user-card/user-card'
+import { ErrorMessage } from '../main/main-styles'
 
 interface IUsersList {
   users: TUser[]
@@ -13,7 +14,7 @@ export const UsersList: React.FC<IUsersList> = ({ users }) => {
       {users.length ? (
         users.map((user: TUser) => <UserCard key={user.id} user={user} />)
       ) : (
-        <SearchError>There are no results for your search!</SearchError>
+        <ErrorMessage>There are no results for your search!</ErrorMessage>
       )}
     </StyledUsers>
   )

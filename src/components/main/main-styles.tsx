@@ -31,3 +31,22 @@ export const Spinner = styled.img`
 
   width: 130px;
 `
+
+export const ErrorMessage = styled.div`
+  margin: 10px 0;
+  border: 1px solid #ae2525;
+  padding: 15px 15px 17px;
+  border-radius: 10px;
+
+  font-size: 17px;
+  color: #ddd;
+`
+
+export const NetworkError = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 auto;
+  height: 90vh;
+`
