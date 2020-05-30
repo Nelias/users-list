@@ -3,14 +3,15 @@ import { connect, useDispatch } from 'react-redux'
 import { UsersList } from '../users-list/users-list'
 import { TUser } from '../user-card/user-card'
 import { fetchUsers } from '../../store/actions/users'
-import { Content, Title } from './main-styles'
+import { Content, Title, Spinner } from './main-styles'
 
 interface MainProps {
+  areUsersLoading: boolean
   users: TUser[]
   searchPhrase: string
 }
 
-export const Main: React.FC<MainProps> = ({ users, searchPhrase }) => {
+export const Main: React.FC<MainProps> = ({ areUsersLoading, users, searchPhrase }) => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
@@ -19,15 +20,21 @@ export const Main: React.FC<MainProps> = ({ users, searchPhrase }) => {
 
   return (
     <Content>
-      <Title>Users List</Title>
-      <UsersList
-        users={users.filter((user: TUser) => {
-          return searchPhrase
-            ? user.name.toLowerCase().includes(searchPhrase) ||
-                user.username.toLowerCase().includes(searchPhrase)
-            : true
-        })}
-      />
+      {areUsersLoading && <Spinner src={`${process.env.PUBLIC_URL}/spinner.svg`} alt="spinner" />}
+
+      {!areUsersLoading && users && (
+        <>
+          <Title>Users List</Title>
+          <UsersList
+            users={users.filter((user: TUser) => {
+              return searchPhrase
+                ? user.name.toLowerCase().includes(searchPhrase) ||
+                    user.username.toLowerCase().includes(searchPhrase)
+                : true
+            })}
+          />
+        </>
+      )}
     </Content>
   )
 }

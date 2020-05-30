@@ -12,9 +12,9 @@ export const SearchError = styled.div`
   min-width: 250px;
   margin: 10px 0;
   border: 1px solid #ae2525;
-  padding: 15px 15px 18px;
+  padding: 15px 15px 17px;
   border-radius: 10px;
 
   font-size: 17px;
-  color: #ccc;
+  color: #ddd;
 `
