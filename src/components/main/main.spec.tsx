@@ -8,7 +8,7 @@ import Main from './main'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-jest.mock('../redux/actions')
+jest.mock('../../store/actions/users')
 
 const mockStore = configureStore([])
 
@@ -18,8 +18,7 @@ describe('Main', () => {
 
   beforeAll(() => {
     store = mockStore({
-      player: {},
-      sidebar: {},
+      users: {},
       search: {},
     })
 

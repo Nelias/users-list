@@ -10,13 +10,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const mockStore = configureStore([])
 
-jest.mock('../../redux/actions')
-
-jest.mock('react-router-dom', () => ({
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
-}))
+jest.mock('../../store/actions/search')
 
 describe('TopBar', () => {
   let store: any = null
