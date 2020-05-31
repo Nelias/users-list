@@ -5,10 +5,9 @@ import { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Enzyme from 'enzyme'
 import Main from './main'
+import { Spinner } from './main-styles'
 
 Enzyme.configure({ adapter: new Adapter() })
-
-jest.mock('../../store/actions/users')
 
 const mockStore = configureStore([])
 
@@ -18,7 +17,7 @@ describe('Main', () => {
 
   beforeAll(() => {
     store = mockStore({
-      users: {},
+      users: { areUsersLoading: true },
       search: {},
     })
 
@@ -39,6 +38,10 @@ describe('Main', () => {
 
   it('should contain main content', () => {
     expect(wrapper.exists('main')).toBe(true)
+  })
+
+  it('should show a spinner if users are loading', () => {
+    expect(wrapper.find(Spinner).props().alt).toEqual('spinner')
   })
 
   afterAll(() => {

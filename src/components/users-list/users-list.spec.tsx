@@ -12,10 +12,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const mockStore = configureStore([])
 
-jest.mock('../../store/actions/search')
-
 describe('UsersList', () => {
-  let store: any = null
   let wrapper: any = null
   const usersList = [
     { id: 1, name: 'Frank', username: 'Francer' },
@@ -23,30 +20,14 @@ describe('UsersList', () => {
   ]
 
   beforeAll(() => {
-    store = mockStore({
-      users: {
-        usersList: [
-          { id: 1, name: 'Frank', username: 'Francer' },
-          { id: 2, name: 'Hank', username: 'Minerals' },
-        ],
-        areUsersLoading: false,
-        usersErrorMessage: null,
-      },
-      search: {},
-    })
-
-    wrapper = mount(
-      <Provider store={store}>
-        <UsersList users={usersList} />
-      </Provider>
-    )
+    wrapper = mount(<UsersList users={usersList} />)
   })
 
   it('should mount in a full DOM', () => {
     expect(wrapper.length).toBe(1)
   })
 
-  it('should contain a list', () => {
+  it('should contain an ordered list', () => {
     expect(wrapper.exists('ol')).toBe(true)
   })
 
@@ -61,7 +42,7 @@ describe('UsersList', () => {
 
   it('should contain a name and a nickname of a second user', () => {
     expect(wrapper.html()).toContain('Hank')
-    expect(wrapper.html()).toContain('Minerals')
+    expect(wrapper.html()).toContain('@Minerals')
   })
 
   afterAll(() => {
@@ -72,11 +53,6 @@ describe('UsersList', () => {
 describe('UsersList - Item search success', () => {
   let store: any = null
   let wrapper: any = null
-  const usersList = [
-    { id: 1, name: 'Frank', username: 'Francer' },
-    { id: 2, name: 'Hank', username: 'Minerals' },
-    { id: 3, name: 'Walter', username: 'Crystals' },
-  ]
 
   beforeAll(() => {
     store = mockStore({
@@ -89,17 +65,12 @@ describe('UsersList - Item search success', () => {
         areUsersLoading: false,
         usersErrorMessage: null,
       },
-      search: { search: { phrase: 'fran' } },
+      search: { phrase: 'fran' },
     })
 
     wrapper = mount(
       <Provider store={store}>
-        <Main
-          usersList={usersList}
-          searchPhrase="fran"
-          areUsersLoading={false}
-          usersErrorMessage={null}
-        />
+        <Main />
       </Provider>
     )
   })
@@ -108,8 +79,8 @@ describe('UsersList - Item search success', () => {
     expect(wrapper.length).toBe(1)
   })
 
-  it('should contain a list', () => {
-    expect(wrapper.exists('ul')).toBe(true)
+  it('should contain an ordered list', () => {
+    expect(wrapper.exists('ol')).toBe(true)
   })
 
   it('should contain a list item', () => {
@@ -120,9 +91,9 @@ describe('UsersList - Item search success', () => {
     expect(wrapper.html()).toContain('Frank')
     expect(wrapper.html()).toContain('@Francer')
     expect(wrapper.html()).not.toContain('Hank')
-    expect(wrapper.html()).not.toContain('Minerals')
+    expect(wrapper.html()).not.toContain('@Minerals')
     expect(wrapper.html()).not.toContain('Walter')
-    expect(wrapper.html()).not.toContain('Crystals')
+    expect(wrapper.html()).not.toContain('@Crystals')
   })
 
   afterAll(() => {
@@ -133,11 +104,6 @@ describe('UsersList - Item search success', () => {
 describe('UsersList - Item search error', () => {
   let store: any = null
   let wrapper: any = null
-  const usersList = [
-    { id: 1, name: 'Frank', username: 'Francer' },
-    { id: 2, name: 'Hank', username: 'Minerals' },
-    { id: 3, name: 'Walter', username: 'Crystals' },
-  ]
 
   beforeAll(() => {
     store = mockStore({
@@ -150,17 +116,12 @@ describe('UsersList - Item search error', () => {
         areUsersLoading: false,
         usersErrorMessage: null,
       },
-      search: { search: { phrase: 'exe' } },
+      search: { phrase: 'exe' },
     })
 
     wrapper = mount(
       <Provider store={store}>
-        <Main
-          usersList={usersList}
-          searchPhrase="exe"
-          areUsersLoading={false}
-          usersErrorMessage={null}
-        />
+        <Main />
       </Provider>
     )
   })
@@ -175,11 +136,11 @@ describe('UsersList - Item search error', () => {
 
   it('should not contain user credentials', () => {
     expect(wrapper.html()).not.toContain('Hank')
-    expect(wrapper.html()).not.toContain('Minerals')
+    expect(wrapper.html()).not.toContain('@Minerals')
   })
 
   it('should display an error message for not found user', () => {
-    expect(wrapper.find(ErrorMessage).props().children).toBeTruthy()
+    expect(wrapper.find(ErrorMessage))
   })
 
   afterAll(() => {

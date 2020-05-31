@@ -10,8 +10,6 @@ Enzyme.configure({ adapter: new Adapter() })
 
 const mockStore = configureStore([])
 
-jest.mock('../../store/actions/search')
-
 describe('TopBar', () => {
   let store: any = null
   let wrapper: any = null

@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Header, Button, Search } from './top-bar-styles'
 import { setSearchPhrase } from '../../store/actions/search'
 
-export const TopBar: React.FC<{}> = () => {
+const TopBar: React.FC<{}> = () => {
   const [inputPhrase, setInputPhrase] = React.useState('')
   const dispatch = useDispatch()
 
@@ -39,4 +39,4 @@ export const TopBar: React.FC<{}> = () => {
   )
 }
 
-export default connect(null, { setSearchPhrase })(TopBar)
+export default TopBar

@@ -34,7 +34,7 @@ export interface IUserCard {
   user: TUser
 }
 
-export const UserCard: React.FC<IUserCard> = ({ user }) => {
+const UserCard: React.FC<IUserCard> = ({ user }) => {
   return (
     <StyledUserCard>
       <UserTitle>
@@ -45,4 +45,4 @@ export const UserCard: React.FC<IUserCard> = ({ user }) => {
   )
 }
 
-export default connect(null, {})(UserCard)
+export default UserCard

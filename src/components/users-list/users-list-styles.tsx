@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledUsers = styled.ol`
+export const StyledUsersList = styled.ol`
   display: flex;
   flex-direction: column;
   align-items: center;
