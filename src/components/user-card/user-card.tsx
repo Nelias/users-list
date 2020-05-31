@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { StyledUserCard, UserName, UserTitle, UserNickname } from './user-card-styles'
 
 type TAddress = {
