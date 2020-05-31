@@ -13,7 +13,7 @@ export const UsersList: React.FC<IUsersList> = ({ users }) => {
       {users.length ? (
         users.map((user: TUser) => <UserCard key={user.id} user={user} />)
       ) : (
-        <ErrorMessage>There are no results for your search!</ErrorMessage>
+        <ErrorMessage as="li">There are no results for your search!</ErrorMessage>
       )}
     </StyledUsersList>
   )

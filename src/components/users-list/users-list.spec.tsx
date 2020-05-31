@@ -130,17 +130,13 @@ describe('UsersList - Item search error', () => {
     expect(wrapper.length).toBe(1)
   })
 
-  it('should not contain a list item', () => {
-    expect(wrapper.exists('li')).toBe(false)
-  })
-
   it('should not contain user credentials', () => {
     expect(wrapper.html()).not.toContain('Hank')
     expect(wrapper.html()).not.toContain('@Minerals')
   })
 
   it('should display an error message for not found user', () => {
-    expect(wrapper.find(ErrorMessage))
+    expect(wrapper.find(ErrorMessage).props().children).toBeTruthy()
   })
 
   afterAll(() => {
