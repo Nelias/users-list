@@ -1,8 +1,9 @@
 import React from 'react'
-import UserCard from './user-card'
 import { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Enzyme from 'enzyme'
+
+import UserCard from './user-card'
 
 Enzyme.configure({ adapter: new Adapter() })
 

@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux'
+
 import usersFetchReducer from './users'
 import searchPhraseReducer from './search'
 
-export default combineReducers({
+const rootReducer = combineReducers({
   users: usersFetchReducer,
   search: searchPhraseReducer,
 })
+
+export type TRootState = ReturnType<typeof rootReducer>
+
+export default rootReducer

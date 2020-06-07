@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { fetchUsersData } from '../api'
-import * as actionTypes from '../actions/actionTypes'
+
+import { fetchUsersData } from './api'
+import * as actionTypes from '../actions/types'
 
 function* fetchUsers() {
   try {

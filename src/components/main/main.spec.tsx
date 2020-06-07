@@ -4,6 +4,7 @@ import configureStore from 'redux-mock-store'
 import { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Enzyme from 'enzyme'
+
 import Main from './main'
 import { Spinner } from './main-styles'
 

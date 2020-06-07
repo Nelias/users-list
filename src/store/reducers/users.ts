@@ -1,12 +1,16 @@
-import * as actionTypes from '../actions/actionTypes'
+import * as actionTypes from '../actions/types'
+import { IUsersState } from './types'
 
-const initialState = {
+const initialState: IUsersState = {
   usersList: [],
   areUsersLoading: false,
   usersErrorMessage: null,
 }
 
-export default function usersFetchReducer(state = initialState, action) {
+export default function usersFetchReducer(
+  state = initialState,
+  action: actionTypes.UsersActionTypes
+): IUsersState {
   switch (action.type) {
     case actionTypes.USERS_FETCH_REQUESTED: {
       return {

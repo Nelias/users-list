@@ -1,31 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { UsersList } from '../users-list/users-list'
 import { TUser } from '../user-card/user-card'
 import { fetchUsers } from '../../store/actions/users'
 import { Content, Title, Spinner, ErrorMessage, NetworkError } from './main-styles'
-
-export interface UsersReducer {
-  areUsersLoading: boolean
-  usersErrorMessage: null | string
-  usersList: TUser[]
-}
-
-export interface SearchReducer {
-  phrase: string
-}
-
-export interface RootReducer {
-  users: UsersReducer
-  search: SearchReducer
-}
+import { TRootState } from '../../store/reducers/index'
 
 export const Main: React.FC<{}> = () => {
   const dispatch = useDispatch()
   const { usersList, areUsersLoading, usersErrorMessage } = useSelector(
-    (state: RootReducer) => state.users
+    (state: TRootState) => state.users
   )
-  const phrase = useSelector((state: RootReducer) => state.search.phrase?.toLowerCase())
+  const phrase = useSelector((state: TRootState) => state.search.phrase?.toLowerCase())
 
   React.useEffect(() => {
     fetchUsers(dispatch)

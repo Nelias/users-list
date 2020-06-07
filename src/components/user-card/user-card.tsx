@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { StyledUserCard, UserName, UserTitle, UserNickname } from './user-card-styles'
 
 type TAddress = {

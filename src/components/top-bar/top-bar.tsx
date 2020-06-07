@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+
 import { Header, Button, Search } from './top-bar-styles'
 import { setSearchPhrase } from '../../store/actions/search'
 

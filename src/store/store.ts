@@ -1,10 +1,11 @@
-import rootReducer from './reducers/index'
-import usersSaga from './sagas/users-saga'
-
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+import rootReducer from './reducers/index'
+import usersSaga from './sagas/users-saga'
+
+const composeEnhancers =
+  (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) || compose
 
 const sagaMiddleware = createSagaMiddleware()
 
