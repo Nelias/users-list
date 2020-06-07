@@ -1,11 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { fetchUsers } from '../../store/actions/users'
+import { TRootState } from '../../store/reducers/index'
 import { UsersList } from '../users-list/users-list'
 import { TUser } from '../user-card/user-card'
-import { fetchUsers } from '../../store/actions/users'
+
 import { Content, Title, Spinner, ErrorMessage, NetworkError } from './main-styles'
-import { TRootState } from '../../store/reducers/index'
 
 export const Main: React.FC<{}> = () => {
   const dispatch = useDispatch()
@@ -17,6 +18,12 @@ export const Main: React.FC<{}> = () => {
   React.useEffect(() => {
     fetchUsers(dispatch)
   }, [dispatch])
+
+  const filteredUsers = React.useMemo(() => {
+    return usersList.filter((user: TUser) =>
+      phrase ? user.name.toLowerCase().includes(phrase) : true
+    )
+  }, [usersList, phrase])
 
   return (
     <Content>
@@ -31,14 +38,7 @@ export const Main: React.FC<{}> = () => {
       {!areUsersLoading && !usersErrorMessage && usersList?.length > 0 && (
         <>
           <Title>Users List</Title>
-          <UsersList
-            users={usersList.filter((user: TUser) => {
-              return phrase
-                ? user.name.toLowerCase().includes(phrase) ||
-                    user.username.toLowerCase().includes(phrase)
-                : true
-            })}
-          />
+          <UsersList users={filteredUsers} />
         </>
       )}
     </Content>
