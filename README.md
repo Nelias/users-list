@@ -15,6 +15,7 @@ Built with TypeScript + React + Redux + Redux-Saga + Jest + Enzyme + styled-comp
 ## Development
 
 1. Run `npm install && npm start` or `yarn && yarn start` in the root folder
+2. Use `yarn import` command if you did generate a new `package-lock.json` file
 
 ## Testing
 
