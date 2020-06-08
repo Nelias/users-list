@@ -15,7 +15,7 @@ interface UsersSucceededAction {
   payload: { users: { data: TUsersList } }
 }
 
-interface UsersFailedeAction {
+interface UsersFailedAction {
   type: typeof USERS_FETCH_FAILED
   payload: TUsersErrorMessage
 }
@@ -26,4 +26,4 @@ interface UsersRequestedAction {
 }
 
 export type SearchActionTypes = SearchAction
-export type UsersActionTypes = UsersSucceededAction | UsersFailedeAction | UsersRequestedAction
+export type UsersActionTypes = UsersSucceededAction | UsersFailedAction | UsersRequestedAction
